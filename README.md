@@ -1,16 +1,41 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# 📱 Kotlin Multiplatform Showcase App
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+This is a **Kotlin Multiplatform (KMP)** project targeting **Android** and **iOS**, using **Compose Multiplatform** for shared UI.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+---
 
+## 📂 Project Structure
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+- **[`/composeApp`](./composeApp/src)**  
+  Shared code for all Compose Multiplatform applications.  
+  - `commonMain/` → Code shared across all targets (Android, iOS, etc.).  
+  - `androidMain/`, `iosMain/`, etc. → Platform-specific implementations.  
+    - Example: Use `iosMain` for Apple’s CoreCrypto APIs or Swift interop.  
+    - Example: Use `androidMain` for Android-specific APIs.  
+
+- **[`/iosApp`](./iosApp/iosApp)**  
+  Native iOS application entry point.  
+  - Required even if UI is fully shared via Compose Multiplatform.  
+  - Add SwiftUI or platform-specific code here.
+
+- **`/features`, `/core`, `/data`, ...**  
+  Modularized KMP source sets generated with the provided tooling (`make new`, `make link`, etc.).  
+  See [`scripts/`](./scripts) for details.
+
+---
+
+## 🛠 Development Workflow
+
+This repository is designed for **feature-based modularization**:
+- Use `make new` to scaffold a new KMP module.
+- Use `make link` / `make unlink` to manage dependencies between modules.
+- Shared namespace is auto-detected from `gradle.properties` or `build.gradle.kts`.
+
+---
+
+## 📚 Learn More
+
+- [Kotlin Multiplatform Docs](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)  
+- [Compose Multiplatform Docs](https://www.jetbrains.com/lp/compose-multiplatform/)  
+
+---
