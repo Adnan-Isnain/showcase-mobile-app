@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
@@ -15,20 +15,21 @@ kotlin {
     cocoapods {
         version = "1.0.0"
         name = "Umbrella"
-
+        podfile = project.file("../iosApp/Podfile")
         summary = "Umbrella framework aggregating shared KMP modules"
         homepage = "https://github.com/Adnan-Isnain/showcase-mobile-app"
         ios.deploymentTarget = "15.1"
         framework {
             baseName = "Umbrella"
             isStatic = true
+            export(project(":composeApp"))
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(compose.runtime)
+                implementation(project(":composeApp"))
             }
         }
         val androidMain by getting

@@ -50,7 +50,7 @@ define _require_from_to
 	fi
 endef
 
-.PHONY: help new new-android new-ios link unlink
+.PHONY: help new new-android new-ios link unlink pods pods-clean
 
 ## help: Show available targets and overridable variables
 help:
@@ -100,7 +100,10 @@ unlink:
 	$(call _require_from_to,unlink)
 	@bash scripts/unlink-module.sh --from "$(FROM)" --to "$(TO)"
 
-## pods: generate podspec + sync + pod install untuk iosApp
 pods:
-	@./gradlew :umbrella:podspec :umbrella:syncFramework
-	@cd iosApp && pod install
+	./gradlew :umbrella:podspec
+	cd iosApp && pod repo update && pod install
+
+pods-clean:
+	cd iosApp && pod deintegrate && rm -rf Pods Podfile.lock
+	./gradlew :umbrella:clean

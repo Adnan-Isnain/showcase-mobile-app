@@ -1,0 +1,57 @@
+# ========= Default =========
+* text=auto eol=lf
+
+# ========= Kotlin/Java/Gradle =========
+*.kt        text
+*.kts       text
+*.java      text
+*.gradle    text
+settings.gradle* text
+build.gradle*    text
+gradlew     text eol=lf
+gradlew.bat text eol=crlf
+
+# ========= Android resources =========
+*.xml       text
+*.pro       text
+
+# ========= iOS / Xcode =========
+# Kurangi konflik di project/scheme Xcode
+*.pbxproj           merge=union
+*.xcscheme          merge=union
+*.xcworkspacedata   merge=union
+*.xcsettings        merge=union
+
+# File teks iOS
+*.plist     text
+*.strings   text
+*.entitlements text
+*.swift     text
+Podfile     text
+*.podspec   text
+*.podspec.json text
+
+# ========= Docs / Config =========
+*.md        text
+*.json      text
+*.yml       text
+*.yaml      text
+.gitignore  text
+Makefile    text
+*.sh        text eol=lf
+*.rb        text
+
+# ========= Binary assets (no diff) =========
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.pdf   binary
+*.ttf   binary
+*.otf   binary
+*.zip   binary
+*.jar   binary
+*.aar   binary
+*.keystore binary
+*.xcarchive binary
